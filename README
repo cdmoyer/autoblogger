@@ -1,0 +1,75 @@
+autoblogger
+- a quick and dirty program to create a static blog from an email account
+
+Author:        Chris Moyer, chris@inarow.net, http://inarow.net/
+
+Updates:       http://inarow.net/entries/projects/one_evening/autoblogger/
+Anonymous SVN: svn co svn://inarow.net/trunk/autoblogger
+
+See LICENSE for licensing details.
+
+
+
+Requirements
+--------------
+Listed version are those it's been tested/developed under.
+
+1. perl (v5.8.8)
+2. perl modules
+	Template (v2.19)
+	Mail::POP3Clientnet (v2.17)
+	IO::Socket::SSL (v1.12) # for SSL servers
+	MIME::Tools (v5.425)
+	Date::Manip (v5.45)
+	File::Copy::Recursive (v.35)
+	GD (v5.004)
+
+Usage
+--------------
+autoblogger.pl [args] path-to-storage path-to-published-site
+-v [--verbose]      Verbose mode
+-h [--host=]*       Pop Host
+-u [--user=]*       Pop User
+-p [--pass=]*       Pop Password
+-s [--ssl]          Use SSL
+-n [--nopop]        Don't get newmessages
+-r [--rebuild=]     Rebuild output index,200708 or index or 200708 or all
+-i [--indexsize=]   How many posts on the index
+-e [--extension=]   Extension for output html (default html)
+   [--tmp=]         tmp directory (defaults to /tmp
+   [--thumbsize=]   thumbnail size (defaults to 150x150)
+   [--fullsize=]    full image size (defaults to 800x800)
+   [--from=]        only process messages where the from: matches this regex (Still downloaded)
+
+		    * required
+
+Inside the templates directory, you must have three files:
+index.tpl   - index.html template
+archive.tpl - used for monthly indexes
+rss.tpl     - generates rss feed
+
+The tar ball, and svn, includes the templates I use for my site (http://proudestfather.inarow.net/)
+
+This will create the HTML files for your blog, in the path-to-published-site 
+directory.  It will not touch any other files, so you can include other content
+in the target path (CSS, images, other pages, etc).
+
+To populate the site, you send email to your autoblogger email address.  This
+should be an address you set up just for this purpose.  The emails you send
+should include one photo.  The subject will become the title of the blog post,
+the body will be the blog content, and the image will be... the image!  If you
+start your body with a line such as:
+
+>date: 2005-12-25
+
+You can fudge the date of your posts.
+
+Good luck.
+
+
+
+
+ToDo
+--------------
+* Add custom attributes in messsages:
+	>Foo: 
