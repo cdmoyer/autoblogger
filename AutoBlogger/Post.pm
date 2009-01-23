@@ -23,7 +23,7 @@ sub get_msg_date {
 	my $text_part;
 	foreach ($msg->parts) {
 		my ($type, ) =  split(/;/, $_->head->get('content-type'));
-		if ($type eq 'text/plain' || $type eq 'text/html') {
+		if ($type =~ /text\/plain/ || $type =~ /text\/html/) {
 			$text_part = $_;
 		}
 	}
@@ -83,7 +83,7 @@ sub new {
 		foreach ($m->parts) {
 			my ($type, ) =  split(/;/, $_->head->get('content-type'));
 			if ($type eq 'text/plain' || $type eq 'text/html') {
-				$text_part = $_;
+				$text_part = $_ if !$text_part;
 			}
 			elsif ($type eq 'image/jpeg' || $type eq 'image/gif' || $type eq 'image/png') {
 				$img_part = $_;
