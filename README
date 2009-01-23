@@ -4,7 +4,7 @@ autoblogger
 Author:        Chris Moyer, chris@inarow.net, http://inarow.net/
 
 Updates:       http://inarow.net/entries/projects/one_evening/autoblogger/
-Anonymous SVN: svn co svn://inarow.net/trunk/autoblogger
+Git Repo:      git://github.com/cdmoyer/autoblogger.git
 
 See LICENSE for licensing details.
 
