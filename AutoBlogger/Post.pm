@@ -27,7 +27,7 @@ sub get_msg_date {
 			$text_part = $_;
 		}
 	}
-	if ($text_part && $text_part->stringify_body =~ m/>date:\s*(.*)[\r\n]/) {
+	if ($text_part && $text_part->stringify_body =~ m/\s*>date:\s*(.*)[\r\n]/) {
 		$udate = $1;
 	}
 
@@ -102,7 +102,7 @@ sub new {
 			while (defined($_ = $io->getline)) { $caption .= $_; }
 			$io->close;
 		}
-		$caption =~ s/^>\w+:.*$//gm;
+		$caption =~ s/^\s*>\w+:.*$//gm;
 		$caption =~ s/\r?\n\r?\n/<br \/><br \/>\n/g;
 
 		$self->img_part($img_part);
